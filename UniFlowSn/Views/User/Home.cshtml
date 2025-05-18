@@ -1,0 +1,58 @@
+﻿@model UniFlowSn.Models.Db.User
+
+@{
+    ViewData["Title"] = "Minha Conta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="margin-top: 7em;">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-header bg-primary text-center p-4" style="background-color: #0FC2C0 !important;">
+                    <h3 class="text-white"><i class="bi bi-person-fill me-2"></i> Minha Conta</h3>
+                </div>
+                <div class="card-body p-4">
+                    <div class="text-center mb-4">
+                        <i class="bi bi-person-circle fs-1 rounded-circle border border-primary p-3 text-primary"></i>
+                        <h5 class="mt-3">Olá, @Model.FirstName @Model.LastName!</h5>
+                    </div>
+                    <h4 class="card-title mb-4">Informações Pessoais</h4>
+                    <dl class="row">
+                        <dt class="col-sm-4"><i class="bi bi-envelope-fill me-2"></i> Email:</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Email)</dd>
+
+                        <dt class="col-sm-4"><i class="bi bi-telephone-fill me-2"></i> Telefone:</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Phone)</dd>
+
+                        <dt class="col-sm-4"><i class="bi bi-house-fill me-2"></i> Endereço:</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Address)</dd>
+
+                        <dt class="col-sm-4"><i class="bi bi-calendar-date-fill me-2"></i> Data de Registro:</dt>
+                        <dd class="col-sm-8">@Model.RegisterDate?.ToString("dd/MM/yyyy HH:mm:ss")</dd>
+                    </dl>
+                    <div class="mt-4 d-grid">
+                        <a href="#" class="btn btn-outline-primary btn-lg"><i class="bi bi-pencil-fill me-2"></i> Editar Informações</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card-title {
+        color: #0FC2C0;
+        font-weight: bold;
+    }
+
+    .btn-outline-primary {
+        color: #0FC2C0;
+        border-color: #0FC2C0;
+    }
+
+        .btn-outline-primary:hover {
+            background-color: #0FC2C0;
+            border-color: #0FC2C0;
+        }
+</style>

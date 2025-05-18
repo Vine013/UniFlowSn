@@ -1,0 +1,49 @@
+﻿@model UniFlowSn.Models.Db.Event
+
+@{
+    ViewData["Title"] = "Excluir Evento";
+}
+
+<div class="container mt-5">
+    <h1 class="mb-4"><i class="bi bi-trash-fill text-danger me-2"></i> Excluir Evento</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-body p-4">
+                    <h4 class="card-title mb-4 text-danger"><i class="bi bi-exclamation-triangle-fill me-2"></i> Tem certeza de que deseja excluir este evento?</h4>
+                    <dl class="row">
+                        <dt class="col-sm-3"><i class="bi bi-bookmark-fill me-2"></i> @Html.DisplayNameFor(model => model.Title)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Title)</dd>
+                        <dt class="col-sm-3"><i class="bi bi-chat-left-text-fill me-2"></i> @Html.DisplayNameFor(model => model.Description)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Description)</dd>
+                        <dt class="col-sm-3"><i class="bi bi-text-paragraph me-2"></i> @Html.DisplayNameFor(model => model.FullDescription)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.FullDescription)</dd>
+                        <dt class="col-sm-3"><i class="bi bi-image-fill me-2"></i> @Html.DisplayNameFor(model => model.ImageName)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.ImageName)</dd>
+                        <dt class="col-sm-3"><i class="bi bi-ticket-fill me-2"></i> @Html.DisplayNameFor(model => model.Qty)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Qty)</dd>
+                        <dt class="col-sm-3"><i class="bi bi-tags-fill me-2"></i> @Html.DisplayNameFor(model => model.Tags)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Tags)</dd>
+                        <dt class="col-sm-3"><i class="bi bi-play-btn-fill me-2"></i> @Html.DisplayNameFor(model => model.VideoUrl)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.VideoUrl)</dd>
+                        <dt class="col-sm-3"><i class="bi bi-calendar-check-fill me-2"></i> @Html.DisplayNameFor(model => model.DtStart)</dt>
+                        <dd class="col-sm-9">@Model.DtStart?.ToString("dd/MM/yyyy HH:mm")</dd>
+                        <dt class="col-sm-3"><i class="bi bi-calendar-x-fill me-2"></i> @Html.DisplayNameFor(model => model.DtEnd)</dt>
+                        <dd class="col-sm-9">@Model.DtEnd?.ToString("dd/MM/yyyy HH:mm")</dd>
+                        <dt class="col-sm-3"><i class="bi bi-geo-alt-fill me-2"></i> @Html.DisplayNameFor(model => model.Place.Place)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Place.Place)</dd>
+                        <dt class="col-sm-3"><i class="bi bi-tag-fill me-2"></i> @Html.DisplayNameFor(model => model.Type.Type)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Type.Type)</dd>
+                    </dl>
+
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="Id" />
+                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash-fill me-2"></i> Excluir Evento</button>
+                        <a asp-action="Index" class="btn btn-secondary ms-2"><i class="bi bi-arrow-left-circle-fill me-2"></i> Voltar para a Lista</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

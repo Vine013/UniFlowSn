@@ -1,0 +1,50 @@
+﻿@model UniFlowSn.Models.Db.User
+
+@{
+    ViewData["Title"] = "Detalhes do Usuário";
+}
+
+<div class="container mt-5">
+    <h1 class="mb-4"><i class="bi bi-person-vcard-fill me-2"></i> Detalhes do Usuário</h1>
+
+    <div class="card shadow-sm rounded">
+        <div class="card-body p-4">
+            <h4 class="card-title mb-4">Informações do Usuário</h4>
+            <dl class="row">
+                <dt class="col-sm-3"><i class="bi bi-envelope-fill me-2"></i> @Html.DisplayNameFor(model => model.Email)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Email)</dd>
+
+                <dt class="col-sm-3"><i class="bi bi-person-fill me-2"></i> @Html.DisplayNameFor(model => model.FirstName)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.FirstName)</dd>
+
+                <dt class="col-sm-3"><i class="bi bi-person-fill me-2"></i> @Html.DisplayNameFor(model => model.LastName)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.LastName)</dd>
+
+                <dt class="col-sm-3"><i class="bi bi-telephone-fill me-2"></i> @Html.DisplayNameFor(model => model.Phone)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Phone)</dd>
+
+                <dt class="col-sm-3"><i class="bi bi-house-fill me-2"></i> @Html.DisplayNameFor(model => model.Address)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Address)</dd>
+
+                <dt class="col-sm-3"><i class="bi bi-shield-fill me-2"></i> @Html.DisplayNameFor(model => model.IsAdmin)</dt>
+                <dd class="col-sm-9">
+                    @if (Model.IsAdmin)
+                    {
+                        <span class="badge bg-success"><i class="bi bi-check-circle-fill me-1"></i> Sim</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary"><i class="bi bi-x-circle-fill me-1"></i> Não</span>
+                    }
+                </dd>
+
+                <dt class="col-sm-3"><i class="bi bi-calendar-date-fill me-2"></i> @Html.DisplayNameFor(model => model.RegisterDate)</dt>
+                <dd class="col-sm-9">@Model.RegisterDate?.ToString("dd/MM/yyyy HH:mm:ss")</dd>
+            </dl>
+        </div>
+        <div class="card-footer text-center py-3">
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary"><i class="bi bi-pencil-fill me-2"></i> Editar</a>
+            <a asp-action="Index" class="btn btn-secondary ms-2"><i class="bi bi-arrow-left-circle-fill me-2"></i> Voltar para a Lista</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+﻿@model UniFlowSn.Models.ViewModels.InscriptionViewModel
+
+@{
+    ViewData["Title"] = "Inscrição no Evento";
+}
+
+<div class="row" style="margin-top: 10rem">
+    <hr />
+    <div class="col-md-4 mx-auto">
+        <h3>Inscreva-se no Evento</h3>
+        <form asp-action="ConfirmInscription">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="EventId" />
+            <input type="hidden" asp-for="UserId" />
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Confirmar Inscrição" class="btn btn-info btn-outline-light" />
+            </div>
+        </form>
+    </div>
+</div>

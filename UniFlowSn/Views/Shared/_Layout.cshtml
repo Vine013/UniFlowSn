@@ -1,0 +1,268 @@
+﻿@inject UniFlowSn.Models.Db.UniFlowDbContext _context;
+
+@{
+    var MySettings = _context.Settings.FirstOrDefault();
+    var top_menus = _context.Menus.Where(row => row.Type == "Topo").ToList();
+}
+
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> @ViewData["Title"] - @MySettings.Title </title>
+    <meta name="description" content="Uthr Fashion eCommerce Bootstrap 5 Template is an innovative and modern e-commerce online store website template." />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/slick.css">
+    <link rel="stylesheet" href="/assets/css/simple-line-icons.css">
+    <link rel="stylesheet" href="/assets/css/ionicons.min.css">
+    <link rel="stylesheet" href="/assets/css/font.awesome.css">
+    <link rel="stylesheet" href="/assets/css/animate.css">
+    <link rel="stylesheet" href="/assets/css/nice-select.css">
+    <link rel="stylesheet" href="/assets/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.12.1/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <script src="/assets/js/vendor/modernizr-3.7.1.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="body_overlay">
+    </div>
+    <div class="offcanvas_menu">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="offcanvas_menu_wrapper" style="padding-top: 7em;">
+                        <div class="canvas_close">
+                            <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
+                        </div>
+                        <div class="header_contact_info">
+                            <ul class="d-flex">
+                                <li class="text-white">
+                                    <i class="icons icon-phone"></i> <a href="tel:@MySettings.Phone">
+                                        @MySettings.Phone
+                                    </a>
+                                </li>
+                                <li class="text-white">
+                                    <i class="icon-envelope-letter icons"></i> <a href="@MySettings.Email">@MySettings.Email</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="header_social d-flex">
+                            <span>Siga-nos</span>
+                            <ul class="d-flex">
+                                <li><a href="@MySettings.Twitter"><i class="icon-social-twitter icons"></i></a></li>
+                                <li><a href="@MySettings.Facebook"><i class="icon-social-facebook icons"></i></a></li>
+                                <li><a href="@MySettings.Instagram"><i class="icon-social-instagram icons"></i></a></li>
+                                <li><a href="@MySettings.Youtuber"><i class="icon-social-youtube icons"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="language_currency">
+                        </div>
+                        <div id="menu" class="text-left ">
+                            <ul class="offcanvas_main_menu">
+                                @foreach (var menus_row in top_menus)
+                                {
+                                    <li>
+                                        <a href="@menus_row.Link">@menus_row.MenuTitle</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="errorMessageModal" tabindex="-1" role="dialog" aria-labelledby="errorMessageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="errorMessageModalLabel"><i class="bi bi-exclamation-triangle-fill me-2"></i> Erro!</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="errorMessageContent"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header class="header_section header_transparent">
+        <div class="header_section header_top navbar fixed-top px-5 py-2">
+            <div class="container-fluid">
+                <div class="row ">
+                    <div class="col-12">
+                        <div class="header_container d-flex justify-content-between align-items-center">
+                            <div class="canvas_open">
+                                <a href="javascript:void(0)"><i class="ion-navicon"></i></a>
+                            </div>
+                            <div class="header_logo">
+                                <a class="sticky_none" href="/"><img src="/images/@MySettings.Logo" alt="@MySettings.Title"></a>
+                            </div>
+                            <div class="main_menu d-none d-lg-block">
+                                <nav>
+                                    <ul class="d-flex mx-auto">
+                                        @foreach (var menus_row in top_menus)
+                                        {
+                                            <li class="px-2">
+                                                <a href="@menus_row.Link" class="fs-5 fw-bold menu-title">@menus_row.MenuTitle</a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="header_account">
+                                <ul class="d-flex align-items-center">
+                                    <li class="header_search"><a href="#"><i class="icon-magnifier icons"></i></a></li>
+                                    <li class="account_link">
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a href="#"> <i class="bi bi-person-circle fs-3"></i></a>
+                                            <ul class="dropdown_account_link">
+                                                <li><i class="bi bi-person-circle fs-3 mb-2"></i></li>
+                                                <li class="border-bottom border-1"><a href="/user/home">@User.Identity.Name</a></li>
+                                                <li><a href="/User/MyEvents">Meus Eventos</a></li>
+                                                @if (User.IsInRole("admin"))
+                                                {
+                                                    <li><a href="/Admin/Home" class="text-primary fw-bold"><i class="bi bi-speedometer2 me-2"></i>Admin</a></li>
+                                                }
+                                                <li><a href="/account/logout">Logout</a></li>
+                                            </ul>
+                                        }
+                                        else
+                                        {
+                                            <a href="#"><i class="icon-user icons @* @(User.Identity.IsAuthenticated ? " text-warning" : "" ) *@"></i></a>
+                                            <ul class="dropdown_account_link">
+                                                <li><a href="/account/login">Login</a></li>
+                                                <li><a href="/account/register">Cadastro</a></li>
+                                            </ul>
+                                        }
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page_search_box">
+            <div class="search_close">
+                <i class="ion-close-round"></i>
+            </div>
+            <form class="border-bottom" action="/products/SearchProducts">
+                <input class="border-0" placeholder="Procure eventos..." type="text" name="SearchText">
+                <button type="submit"><span class="icon-magnifier icons"></span></button>
+            </form>
+        </div>
+
+    </header>
+
+    @RenderBody()
+
+    <footer class="footer_widgets">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-5">
+                    <div class="footer_widget_list text-left">
+                        <div class="footer_logo">
+                            <a href="#"><img class="w-35" src="/images/@MySettings.Logo" alt="@MySettings.Title"></a>
+                        </div>
+                        <div class="footer_contact">
+                            <div class="footer_contact_list">
+                                <span>Headquarters</span>
+                                <p>@MySettings.Address</p>
+                            </div>
+                            <div class="footer_contact_list">
+                                <span>SAC 24 horas:</span>
+                                <a href="tel:@MySettings.Phone">@MySettings.Phone</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-7">
+                    <div class="footer_widget_list text-right">
+                        <div class="footer_menu">
+                            <ul class="d-flex justify-content-end">
+                                @{
+                                    var bottom_menus = _context.Menus
+                                    .Where(row => row.Type == "Inferior")
+                                    .ToList();
+                                }
+                                @foreach (var menus_row in bottom_menus)
+                                {
+                                    <li>
+                                        <a href="@menus_row.Link">@menus_row.MenuTitle</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="footer_social">
+                            <ul class="d-flex justify-content-end">
+                                <li>
+                                    <a href="@MySettings.Twitter" data-tippy="Twitter" data-tippy-inertia="true"
+                                       data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="top">
+                                        <i class="ion-social-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@MySettings.Facebook" data-tippy="Facebook" data-tippy-inertia="true"
+                                       data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="top">
+                                        <i class="ion-social-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@MySettings.Instagram" data-tippy="Instagram" data-tippy-inertia="true"
+                                       data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="top">
+                                        <i class="ion-social-instagram-outline"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@MySettings.Youtuber" data-tippy="Youtube" data-tippy-inertia="true"
+                                       data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="top">
+                                        <i class="ion-social-youtube"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="copyright_right">
+                            <h5>@MySettings.CopyRight</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/js/vendor/jquery-3.4.1.min.js"></script>
+    <script src="/assets/js/vendor/popper.js"></script>
+    <script src="/assets/js/vendor/bootstrap.min.js"></script>
+    <script src="/assets/js/slick.min.js"></script>
+    <script src="/assets/js/wow.min.js"></script>
+    <script src="/assets/js/jquery.scrollup.min.js"></script>
+    <script src="/assets/js/images-loaded.min.js"></script>
+    <script src="/assets/js/isotope.pkgd.min.js"></script>
+    <script src="/assets/js/jquery.nice-select.js"></script>
+    <script src="/assets/js/tippy-bundle.umd.js"></script>
+    <script src="/assets/js/jquery-ui.min.js"></script>
+    <script src="/assets/js/jquery.instagramFeed.min.js"></script>
+    <script src="/assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/js/mailchimp-ajax.js"></script>
+
+    <script src="/assets/js/main.js"></script>
+
+</body>
+
+</html>

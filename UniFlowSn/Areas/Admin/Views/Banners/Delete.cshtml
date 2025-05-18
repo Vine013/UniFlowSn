@@ -1,0 +1,39 @@
+﻿@model UniFlowSn.Models.Db.Banner
+
+@{
+    ViewData["Title"] = "Excluir Banner";
+}
+
+<div class="container mt-5">
+    <h1 class="mb-4"><i class="bi bi-trash-fill text-danger me-2"></i> Excluir Banner</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-body p-4">
+                    <h4 class="card-title mb-4 text-danger"><i class="bi bi-exclamation-triangle-fill me-2"></i> Tem certeza de que deseja excluir este banner?</h4>
+                    <dl class="row">
+                        <dt class="col-sm-3"><i class="bi bi-type me-2"></i> @Html.DisplayNameFor(model => model.Title)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Title)</dd>
+                        <dt class="col-sm-3"><i class="bi bi-text-indent-left me-2"></i> @Html.DisplayNameFor(model => model.SubTitle)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.SubTitle)</dd>
+                        <dt class="col-sm-3"><i class="bi bi-image-fill me-2"></i> @Html.DisplayNameFor(model => model.ImageName)</dt>
+                        <dd class="col-sm-9"><img src="/images/banners/@Model.ImageName" alt="@Model.Title" class="img-thumbnail" style="max-width: 150px;"></dd>
+                        <dt class="col-sm-3"><i class="bi bi-sort-numeric-down me-2"></i> @Html.DisplayNameFor(model => model.Priority)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Priority)</dd>
+                        <dt class="col-sm-3"><i class="bi bi-link-45deg me-2"></i> @Html.DisplayNameFor(model => model.Link)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Link)</dd>
+                        <dt class="col-sm-3"><i class="bi bi-layout-fill me-2"></i> @Html.DisplayNameFor(model => model.Position)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Position)</dd>
+                    </dl>
+
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="Id" />
+                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash-fill me-2"></i> Excluir Banner</button>
+                        <a asp-action="Index" class="btn btn-secondary ms-2"><i class="bi bi-arrow-left-circle-fill me-2"></i> Voltar para a Lista</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

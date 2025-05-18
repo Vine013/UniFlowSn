@@ -1,0 +1,89 @@
+﻿@model UniFlowSn.Models.Db.Setting
+
+@{
+    ViewData["Title"] = "Editar Configurações";
+}
+
+<div class="container mt-5">
+    <h1 class="mb-4"><i class="bi bi-gear-fill me-2"></i> Editar Configurações</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-body p-4">
+                    <form asp-action="Edit" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                        <input type="hidden" asp-for="Id" />
+                        <div class="mb-3 form-floating">
+                            <input asp-for="Title" class="form-control" placeholder="Título do Site" required />
+                            <label asp-for="Title" class="form-label"><i class="bi bi-type me-2"></i> Título do Site</label>
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 form-floating">
+                            <input asp-for="Address" class="form-control" placeholder="Endereço" />
+                            <label asp-for="Address" class="form-label"><i class="bi bi-geo-alt-fill me-2"></i> Endereço</label>
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 form-floating">
+                            <input asp-for="Email" class="form-control" placeholder="Email" />
+                            <label asp-for="Email" class="form-label"><i class="bi bi-envelope-fill me-2"></i> Email</label>
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 form-floating">
+                            <input asp-for="Phone" class="form-control" placeholder="Telefone" />
+                            <label asp-for="Phone" class="form-label"><i class="bi bi-telephone-fill me-2"></i> Telefone</label>
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 form-floating">
+                            <input asp-for="CopyRight" class="form-control" placeholder="Copyright" />
+                            <label asp-for="CopyRight" class="form-label"><i class="bi bi-c-circle-fill me-2"></i> Copyright</label>
+                            <span asp-validation-for="CopyRight" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 form-floating">
+                            <input asp-for="Instagram" class="form-control" placeholder="Instagram" />
+                            <label asp-for="Instagram" class="form-label"><i class="bi bi-instagram me-2"></i> Instagram</label>
+                            <span asp-validation-for="Instagram" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 form-floating">
+                            <input asp-for="Facebook" class="form-control" placeholder="Facebook" />
+                            <label asp-for="Facebook" class="form-label"><i class="bi bi-facebook me-2"></i> Facebook</label>
+                            <span asp-validation-for="Facebook" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 form-floating">
+                            <input asp-for="Youtuber" class="form-control" placeholder="YouTube" />
+                            <label asp-for="Youtuber" class="form-label"><i class="bi bi-youtube me-2"></i> YouTube</label>
+                            <span asp-validation-for="Youtuber" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 form-floating">
+                            <input asp-for="Twitter" class="form-control" placeholder="Twitter" />
+                            <label asp-for="Twitter" class="form-label"><i class="bi bi-twitter me-2"></i> Twitter</label>
+                            <span asp-validation-for="Twitter" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Logo" class="form-label"><i class="bi bi-image-fill me-2"></i> Logo Atual</label>
+                            <br />
+                            <img src="/images/@Model.Logo" alt="Logo Atual" class="img-thumbnail" style="max-width: 150px;">
+                            <span asp-validation-for="Logo" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Logo" class="form-label"><i class="bi bi-upload me-2"></i> Nova Logo (opcional)</label>
+                            <input type="file" class="form-control" name="newLogo" accept="image/*" />
+                        </div>
+                        <div class="mt-4 d-grid">
+                            <button type="submit" class="btn btn-primary"><i class="bi bi-save-fill me-2"></i> Salvar Configurações</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center py-3">
+                    <a asp-action="Index" class="btn btn-secondary"><i class="bi bi-arrow-left-circle-fill me-2"></i> Voltar para a Lista</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

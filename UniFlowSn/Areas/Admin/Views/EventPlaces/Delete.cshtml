@@ -1,0 +1,35 @@
+﻿@model UniFlowSn.Models.Db.EventPlace
+
+@{
+    ViewData["Title"] = "Excluir Local de Evento";
+}
+
+<div class="container mt-5">
+    <h1 class="mb-4"><i class="bi bi-trash-fill text-danger me-2"></i> Excluir Local de Evento</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-body p-4">
+                    <h4 class="card-title mb-4 text-danger"><i class="bi bi-exclamation-triangle-fill me-2"></i> Tem certeza de que deseja excluir este local?</h4>
+                    <dl class="row">
+                        <dt class="col-sm-3"><i class="bi bi-signpost-fill me-2"></i> @Html.DisplayNameFor(model => model.Place)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Place)</dd>
+                        <dt class="col-sm-3"><i class="bi bi-house-fill me-2"></i> @Html.DisplayNameFor(model => model.Address)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Address)</dd>
+                        <dt class="col-sm-3"><i class="bi bi-building me-2"></i> @Html.DisplayNameFor(model => model.City)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.City)</dd>
+                        <dt class="col-sm-3"><i class="bi bi-map-fill me-2"></i> @Html.DisplayNameFor(model => model.State)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.State)</dd>
+                    </dl>
+
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="Id" />
+                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash-fill me-2"></i> Excluir Local</button>
+                        <a asp-action="Index" class="btn btn-secondary ms-2"><i class="bi bi-arrow-left-circle-fill me-2"></i> Voltar para a Lista</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

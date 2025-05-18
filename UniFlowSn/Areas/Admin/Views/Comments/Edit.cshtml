@@ -1,0 +1,61 @@
+﻿@model UniFlowSn.Models.Db.Comment
+
+@{
+    ViewData["Title"] = "Editar Comentário";
+}
+
+<div class="container mt-5">
+    <h1 class="mb-4"><i class="bi bi-pencil-square me-2"></i> Editar Comentário</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-body p-4">
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                        <input type="hidden" asp-for="Id" />
+                        <div class="mb-3 form-floating">
+                            <input asp-for="Name" class="form-control" placeholder="Nome" required />
+                            <label asp-for="Name" class="form-label"><i class="bi bi-person-fill me-2"></i> Nome</label>
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 form-floating">
+                            <input asp-for="Email" class="form-control" placeholder="Email" required />
+                            <label asp-for="Email" class="form-label"><i class="bi bi-envelope-fill me-2"></i> Email</label>
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 form-floating">
+                            <input asp-for="CommentText" class="form-control" placeholder="Comentário" required />
+                            <label asp-for="CommentText" class="form-label"><i class="bi bi-text-paragraph me-2"></i> Comentário</label>
+                            <span asp-validation-for="CommentText" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 form-floating">
+                            <select asp-for="EventId" class="form-select" asp-items="ViewBag.EventId" required>
+                                <option value="">Selecione o Evento</option>
+                            </select>
+                            <label asp-for="EventId" class="form-label"><i class="bi bi-bookmark-fill me-2"></i> Evento</label>
+                            <span asp-validation-for="EventId" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 form-floating">
+                            <input asp-for="CreateDate" class="form-control" type="datetime-local" placeholder="Data de Criação" required />
+                            <label asp-for="CreateDate" class="form-label"><i class="bi bi-calendar-plus-fill me-2"></i> Data de Criação</label>
+                            <span asp-validation-for="CreateDate" class="text-danger"></span>
+                        </div>
+                        <div class="mt-4 d-grid">
+                            <button type="submit" class="btn btn-primary"><i class="bi bi-save-fill me-2"></i> Salvar Comentário</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center py-3">
+                    <a asp-action="Index" class="btn btn-secondary"><i class="bi bi-arrow-left-circle-fill me-2"></i> Voltar para a Lista</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,35 @@
+﻿@model UniFlowSn.Models.ViewModels.TicketViewModel
+
+@{
+    ViewData["Title"] = "Seu Ingresso";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row" style="margin-top: 10rem">
+    <hr />
+    <div class="col-md-6 mx-auto">
+        <div class="card shadow-sm rounded">
+            <div class="card-header bg-success text-white">
+                <h3 class="card-title"><i class="bi bi-ticket-fill me-2"></i> Seu Ingresso</h3>
+            </div>
+            <div class="card-body">
+                <p><strong>Evento:</strong> @Model.Event</p>
+                @if (Model.DtStart.HasValue)
+                {
+                    <p><strong>Data:</strong> @Model.DtStart.Value.ToString("dd/MM/yyyy HH:mm")</p>
+                }
+                @if (!string.IsNullOrEmpty(Model.Place))
+                {
+                    <p><strong>Local:</strong> @Model.Place</p>
+                }
+                <hr />
+                <p><strong>Participante:</strong> @Model.User</p>
+                <p><strong>E-mail:</strong> @Model.Email</p>
+                <p><strong>Data da Inscrição:</strong> @Model.CreateDate.ToString("dd/MM/yyyy HH:mm:ss")</p>
+                <h5 class="card-title"><strong>Código do Ingresso:</strong> <span class="badge bg-secondary">@Model.Id</span></h5>
+                <p class="text-muted">Guarde este código para acesso ao evento.</p>
+                <a href="/User/MyEvents" class="btn btn-secondary mt-3"><i class="bi bi-arrow-left-circle-fill me-1"></i> Voltar para Meus Eventos</a>
+            </div>
+        </div>
+    </div>
+</div>

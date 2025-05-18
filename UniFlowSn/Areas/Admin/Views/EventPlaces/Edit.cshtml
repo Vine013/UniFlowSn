@@ -1,0 +1,54 @@
+﻿@model UniFlowSn.Models.Db.EventPlace
+
+@{
+    ViewData["Title"] = "Editar Local de Evento";
+}
+
+<div class="container mt-5">
+    <h1 class="mb-4"><i class="bi bi-pencil-square me-2"></i> Editar Local de Evento</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-body p-4">
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                        <input type="hidden" asp-for="Id" />
+                        <div class="mb-3 form-floating">
+                            <input asp-for="Place" class="form-control" placeholder="Nome do Local" required />
+                            <label asp-for="Place" class="form-label"><i class="bi bi-signpost-fill me-2"></i> Nome do Local</label>
+                            <span asp-validation-for="Place" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 form-floating">
+                            <input asp-for="Address" class="form-control" placeholder="Endereço" required />
+                            <label asp-for="Address" class="form-label"><i class="bi bi-house-fill me-2"></i> Endereço</label>
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 form-floating">
+                            <input asp-for="City" class="form-control" placeholder="Cidade" />
+                            <label asp-for="City" class="form-label"><i class="bi bi-building me-2"></i> Cidade</label>
+                            <span asp-validation-for="City" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 form-floating">
+                            <input asp-for="State" class="form-control" placeholder="Estado" />
+                            <label asp-for="State" class="form-label"><i class="bi bi-map-fill me-2"></i> Estado</label>
+                            <span asp-validation-for="State" class="text-danger"></span>
+                        </div>
+                        <div class="mt-4 d-grid">
+                            <button type="submit" class="btn btn-primary"><i class="bi bi-save-fill me-2"></i> Salvar Local</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center py-3">
+                    <a asp-action="Index" class="btn btn-secondary"><i class="bi bi-arrow-left-circle-fill me-2"></i> Voltar para a Lista</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

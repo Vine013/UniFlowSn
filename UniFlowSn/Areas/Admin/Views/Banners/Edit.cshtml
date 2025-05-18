@@ -1,0 +1,79 @@
+﻿@model UniFlowSn.Models.Db.Banner
+
+@{
+    ViewData["Title"] = "Editar Banner";
+}
+
+<div class="container mt-5">
+    <h1 class="mb-4"><i class="bi bi-pencil-square me-2"></i> Editar Banner</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-body p-4">
+                    <form asp-action="Edit" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="ImageName" />
+                        <div class="mb-3 form-floating">
+                            <input asp-for="Title" class="form-control" placeholder="Título" />
+                            <label asp-for="Title" class="form-label"><i class="bi bi-type me-2"></i> Título</label>
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 form-floating">
+                            <input asp-for="SubTitle" class="form-control" placeholder="Subtítulo" />
+                            <label asp-for="SubTitle" class="form-label"><i class="bi bi-text-indent-left me-2"></i> Subtítulo</label>
+                            <span asp-validation-for="SubTitle" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="ImageName" class="form-label"><i class="bi bi-upload me-2"></i> Imagem do Banner</label>
+                            <input type="file" name="ImageFile" asp-for="ImageName" class="form-control" accept="image/*" />
+                            <img src="/images/banners/@Model.ImageName" alt="@Model.Title" class="img-thumbnail mt-2" style="max-width: 150px;">
+                            <span asp-validation-for="ImageName" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 form-floating">
+                            <select asp-for="Priority" class="form-select">
+                                <option value="">Selecione a Prioridade</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                            </select>
+                            <label asp-for="Priority" class="form-label"><i class="bi bi-sort-numeric-down me-2"></i> Prioridade</label>
+                            <span asp-validation-for="Priority" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 form-floating">
+                            <input asp-for="Link" class="form-control" placeholder="Link" type="url" />
+                            <label asp-for="Link" class="form-label"><i class="bi bi-link-45deg me-2"></i> Link</label>
+                            <span asp-validation-for="Link" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 form-floating">
+                            <select asp-for="Position" class="form-select" required>
+                                <option value="">Selecione a Posição</option>
+                                <option value="Slider">Slider</option>
+                                <option value="Banner 1">Banner 1</option>
+                                <option value="Banner 2">Banner 2</option>
+                            </select>
+                            <label asp-for="Position" class="form-label"><i class="bi bi-layout-fill me-2"></i> Posição</label>
+                            <span asp-validation-for="Position" class="text-danger"></span>
+                        </div>
+                        <div class="mt-4 d-grid">
+                            <button type="submit" class="btn btn-primary"><i class="bi bi-save-fill me-2"></i> Salvar Banner</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center py-3">
+                    <a asp-action="Index" class="btn btn-secondary"><i class="bi bi-arrow-left-circle-fill me-2"></i> Voltar para a Lista</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

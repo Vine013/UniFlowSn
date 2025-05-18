@@ -1,0 +1,134 @@
+﻿@model List<UniFlowSn.Models.Db.Event>
+
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var banners = ViewData["banners"] as List<UniFlowSn.Models.Db.Banner>;
+    var eventosPorTipo = ViewBag.EventosPorTipo as List<dynamic>;
+}
+
+<section class="slider_section mb-63">
+    <div class="slider_area slick_slider_activation" data-slick='{
+    "slidesToShow": 1,
+    "slidesToScroll": 1,
+    "arrows": true,
+    "dots": true,
+    "autoplay": false,
+    "speed": 300,
+    "infinite": true
+    }'>
+        @if (banners != null)
+        {
+            var sliders = banners.Where(x => x.Position == "Slider").OrderBy(x => x.Priority).ToList();
+            foreach (var item in sliders)
+            {
+                <div class="single_slider d-flex align-items-center" data-bgimg="/images/banners/@item.ImageName">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-7">
+                                <div class="slider_text">
+                                    <span>Eventos</span>
+                                    <h1>@Html.Raw(item.Title.Replace("\n", "<br/>"))</h1>
+                                    <p>@Html.Raw(item.SubTitle.Replace("\n", "<br/>"))</p>
+                                    <a class="btn btn-primary" href="@item.Link">Saiba Mais</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container">
+        @if (eventosPorTipo != null && eventosPorTipo.Any())
+        {
+            foreach (var categoria in eventosPorTipo)
+            {
+                <h2 class="mb-4">@categoria.TypeName</h2>
+                <div class="row row-cols-1 row-cols-md-auto g-4 overflow-auto">
+                    @foreach (var evento in (List<UniFlowSn.Models.Db.Event>)categoria.Events)
+                    {
+                        <div class="col-md-3" style="min-width: 280px;">
+                            <div class="card h-100 shadow-sm rounded">
+                                <img src="/images/banners/@evento.ImageName" class="card-img-top" alt="@evento.Title" style="height: 180px; object-fit: cover;">
+                                <div class="card-body">
+                                    <h6 class="card-title">@evento.Title</h6>
+                                    <p class="card-text small"><i class="bi bi-calendar-event me-2"></i> @evento.DtStart?.ToString("dd/MM/yyyy HH:mm")</p>
+                                    <p class="card-text small"><i class="bi bi-geo-alt-fill me-2"></i> @evento.Place?.Place</p>
+                                    <a href="/Events/EventDetails/@evento.Id" class="btn btn-outline-primary btn-sm"><i class="bi bi-eye-fill me-1"></i> Ver Detalhes</a>
+                                    @if (evento.Qty > 0 && User.Identity.IsAuthenticated)
+                                    {
+                                        <a href="/Inscription/Inscribe/@evento.Id" class="btn btn-success btn-sm ms-2"><i class="bi bi-plus-circle-fill me-1"></i> Inscrever-se</a>
+                                    }
+                                    else if (evento.Qty <= 0)
+                                    {
+                                        <span class="badge bg-danger ms-2">Esgotado</span>
+                                    }
+                                    else
+                                    {
+                                        <a href="/account/login" class="btn btn-outline-secondary btn-sm ms-2"><i class="bi bi-box-arrow-in-right me-1"></i> Login</a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <hr class="my-5" />
+            }
+        }
+        else
+        {
+            <p>Nenhum evento cadastrado ainda.</p>
+        }
+    </div>
+</section>
+
+<section class="shipping_section mb-102">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="shipping_inner d-flex justify-content-between">
+                    <div class="single_shipping d-flex align-items-center">
+                        <div class="shipping_icon">
+                            <i class="icon-cursor icons"></i>
+                        </div>
+                        <div class="shipping_text">
+                            <h3>Garanta seus Ingressos</h3>
+                            <p>Eventos Gratuitos e Pagos</p>
+                        </div>
+                    </div>
+                    <div class="single_shipping d-flex align-items-center">
+                        <div class="shipping_icon">
+                            <i class="icon-reload icons"></i>
+                        </div>
+                        <div class="shipping_text">
+                            <h3>Ingresso Instantâneo</h3>
+                            <p>Enviado em até 5 min</p>
+                        </div>
+                    </div>
+                    <div class="single_shipping d-flex align-items-center">
+                        <div class="shipping_icon">
+                            <i class="icon-lock icons"></i>
+                        </div>
+                        <div class="shipping_text">
+                            <h3>Pagamentos 100% Seguros</h3>
+                            <p>Pagamento Online</p>
+                        </div>
+                    </div>
+                    <div class="single_shipping d-flex align-items-center">
+                        <div class="shipping_icon">
+                            <i class="icon-tag icons"></i>
+                        </div>
+                        <div class="shipping_text">
+                            <h3>Eventos Acessíveis</h3>
+                            <p>Garantido</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
