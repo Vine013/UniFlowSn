@@ -9027,3 +9027,20 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 .text-uniflow {
     color: #0FC2C0 !important;
 }
+
+.btn-uniflow{
+    background-color:transparent;
+    color: black;
+    border-color: black;
+}
+
+.btn-uniflow:hover {
+    background-color: black;
+    color: white;
+    border-color: black;
+}
+
+.border-uniflow{
+    border-color: black;
+}
+

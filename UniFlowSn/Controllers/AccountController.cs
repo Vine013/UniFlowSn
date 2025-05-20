@@ -59,8 +59,9 @@ namespace UniFlowSn.Controllers
             //------------------------------------------------
             _context.Users.Add(user);
             _context.SaveChanges();
-            //------------------------
-            return RedirectToAction("login");
+            //------------------------
+
+            return RedirectToAction("login");
         }
         #endregion
 

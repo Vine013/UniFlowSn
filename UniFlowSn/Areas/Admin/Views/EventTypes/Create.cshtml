@@ -18,6 +18,11 @@
                             <label asp-for="Type" class="form-label"><i class="bi bi-tag-fill me-2"></i> Tipo de Evento</label>
                             <span asp-validation-for="Type" class="text-danger"></span>
                         </div>
+                        <div class="mb-3 form-floating">
+                            <input asp-for="Icon" class="form-control" placeholder="Icone de Evento"/>
+                            <label asp-for="Icon" class="form-label"><i class="me-2"></i> Icone de Evento</label>
+                            <span asp-validation-for="Icon" class="text-danger"></span>
+                        </div>
                         <div class="mt-4 d-grid">
                             <button type="submit" class="btn btn-success"><i class="bi bi-check-circle-fill me-2"></i> Adicionar</button>
                         </div>
