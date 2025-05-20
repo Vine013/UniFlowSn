@@ -15,6 +15,7 @@
             <thead class="thead-dark">
                 <tr>
                     <th><i class="bi bi-tag me-2"></i> @Html.DisplayNameFor(model => model.Type)</th>
+                    <th>@Html.DisplayNameFor(model => model.Icon)</th>
                     <th class="text-center">Ações</th>
                 </tr>
             </thead>
@@ -23,6 +24,7 @@
                 {
                     <tr>
                         <td>@Html.DisplayFor(modelItem => item.Type)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Icon)</td>
                         <td class="text-center">
                             <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary"><i class="bi bi-pencil-fill"></i> Editar</a>
                             <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info ms-1"><i class="bi bi-eye-fill"></i> Detalhes</a>

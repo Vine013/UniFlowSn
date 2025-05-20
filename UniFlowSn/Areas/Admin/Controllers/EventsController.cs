@@ -47,7 +47,7 @@ namespace UniFlowSn.Areas.Admin.Controllers
             _context.Remove(gallery);
             _context.SaveChanges();
 
-            return Redirect("edit/" + gallery.EventId);
+            return RedirectToAction("Edit", "Events", new { Area = "Admin", id = gallery.EventId });
         }
 
         // GET: Admin/Events/Details/5
@@ -76,6 +76,8 @@ namespace UniFlowSn.Areas.Admin.Controllers
         {
             ViewData["PlaceId"] = new SelectList(_context.EventPlaces, "Id", "Place");
             ViewData["TypeId"] = new SelectList(_context.EventTypes, "Id", "Type");
+            ViewData["place"] = _context.EventPlaces.ToList(); // Popula a lista de locais
+            ViewData["types"] = _context.EventTypes.ToList();   // Popula a lista de tipos
             return View();
         }
 
@@ -152,6 +154,8 @@ namespace UniFlowSn.Areas.Admin.Controllers
             //==============================================
             ViewData["PlaceId"] = new SelectList(_context.EventPlaces, "Id", "Place", @event.PlaceId);
             ViewData["TypeId"] = new SelectList(_context.EventTypes, "Id", "Type", @event.TypeId);
+            ViewData["place"] = await _context.EventPlaces.ToListAsync(); // Popula a lista de locais
+            ViewData["types"] = await _context.EventTypes.ToListAsync();   // Popula a lista de tipos
             return View(@event);
         }
 

@@ -1,17 +1,52 @@
 ﻿@model List<UniFlowSn.Models.Db.Event>
+@inject UniFlowSn.Models.Db.UniFlowDbContext _context
 
 @{
     ViewData["Title"] = "Explorar Eventos";
 }
 
-<div class="container" style="margin-top: 7em;">
-    <div class="row">
+<div class="container " style="margin-top:7em;">
+    <h2 class="pb-4 text-center">Explorar Eventos</h2>
+    <div class="row mb-3 align-items-center">
         <div class="col-md-12">
-            <h2 class="mb-4">Explore Nossos Eventos</h2>
+            <h4>Filtrar Eventos</h4>
+            <form method="get" asp-action="Index" class="row row-cols-auto g-2 align-items-center">
+                <div class="col">
+                    <select class="form-select form-select-sm" id="typeId" name="typeId">
+                        <option value="">Categoria</option>
+                        @if (_context.EventTypes.Any())
+                        {
+                            @foreach (var type in _context.EventTypes.OrderBy(t => t.Type))
+                            {
+                                <option value="@type.Id" selected="@(Context.Request.Query["typeId"].ToString() == type.Id.ToString() ? "selected" : null)">@type.Type</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="col">
+                    <select class="form-select form-select-sm" id="localId" name="localId">
+                        <option value="">Local</option>
+                        @if (_context.EventPlaces.Any())
+                        {
+                            @foreach (var local in _context.EventPlaces.OrderBy(l => l.Place))
+                            {
+                                <option value="@local.Id" selected="@(Context.Request.Query["localId"] == local.Id.ToString() ? "selected" : null)">@local.Place</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-filter me-2"></i> Filtrar</button>
+                </div>
+                <div class="col">
+                    <a asp-action="Index" class="btn btn-outline-secondary btn-sm"><i class="bi bi-x-circle me-2"></i> Limpar</a>
+                </div>
+            </form>
         </div>
     </div>
 
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        @* Sua listagem de eventos existente *@
         @foreach (var evento in Model)
         {
             <div class="col">

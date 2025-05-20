@@ -1,0 +1,96 @@
+﻿/* custom.css */
+
+/* Estilos para a timeline de eventos na Home */
+.event-timeline {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee;
+}
+
+.timeline-item {
+    display: inline-block;
+    margin-right: 30px;
+    padding: 15px;
+    border-left: 2px solid #0FC2C0;
+    position: relative;
+}
+
+    .timeline-item:last-child {
+        margin-right: 0;
+    }
+
+    .timeline-item h6 {
+        color: #0FC2C0;
+        margin-bottom: 5px;
+    }
+
+/* Estilos para os cards de eventos na Home */
+.event-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+}
+
+    .event-card:hover {
+        transform: scale(1.02);
+    }
+
+    .event-card img {
+        height: 200px;
+        object-fit: cover;
+    }
+
+.event-card-body {
+    padding: 15px;
+}
+
+.event-card-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.event-card-info {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.event-card-actions {
+    margin-top: 15px;
+}
+
+/* Estilos gerais (você pode adicionar mais aqui) */
+.bg-image {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+
+.category-item {
+    transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out, background-color 0.15s ease-in-out; /* Adicionando transição para background-color */
+}
+
+.category-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 204, 192, 0.1); /* Cor principal com baixa opacidade no hover */
+}
+
+.category-icon {
+    font-size: 2.5rem;
+    color: #0FC2C0 !important;
+    margin-bottom: 10px;
+}
+
+.category-name {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+}

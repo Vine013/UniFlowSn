@@ -12,14 +12,51 @@ namespace UniFlowSn.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+
+        #region Index
+        public IActionResult Index(int? typeId, string? localId, DateTime? startDate, DateTime? endDate, string? searchTerm)
         {
-            List<Event> events = _context.Events
-                .Include(e => e.Type)
+            IQueryable<Event> events = _context.Events
                 .Include(e => e.Place)
-                .OrderByDescending(x => x.Id).ToList();
-            return View(events);
+                .Include(e => e.Type)
+                .OrderByDescending(x => x.DtStart);
+
+            // Lógica de filtro por typeId
+            if (typeId.HasValue)
+            {
+                events = events.Where(e => e.TypeId == typeId.Value);
+            }
+
+            // Lógica de filtro por localId
+            if (!string.IsNullOrEmpty(localId))
+            {
+                events = events.Where(e => e.PlaceId.ToString() == localId);
+            }
+
+            // Lógica de filtro por startDate
+            if (startDate.HasValue)
+            {
+                events = events.Where(e => e.DtStart >= startDate.Value);
+            }
+
+            // Lógica de filtro por endDate
+            if (endDate.HasValue)
+            {
+                events = events.Where(e => e.DtEnd <= endDate.Value);
+            }
+
+            // Lógica de filtro por searchTerm (busca em Título e Tags)
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                events = events.Where(e => EF.Functions.Like(e.Title, "%" + searchTerm + "%") ||
+                                           EF.Functions.Like(e.Tags, "%" + searchTerm + "%"));
+            }
+
+            return View(events.ToList());
         }
+        #endregion
+
+        #region SearchProducts
         public IActionResult SearchProducts(string SearchText)
         {
             var events = _context.Events
@@ -29,6 +66,9 @@ namespace UniFlowSn.Controllers
                 .ToList();
             return View("Index", events);
         }
+        #endregion
+
+        #region EventDetails
         public IActionResult EventDetails(int id)
         {
             Event? @event = _context.Events.FirstOrDefault(x => x.Id == id);
@@ -53,8 +93,9 @@ namespace UniFlowSn.Controllers
                 .ToList();
             return View(@event);
         }
+        #endregion
 
-
+        #region Comments
         [HttpPost]
         public IActionResult SubmitComment(string name, string email, string comment, int eventId)
         {
@@ -87,8 +128,8 @@ namespace UniFlowSn.Controllers
                 TempData["ErrorMessage"] = "Por favor, preencha todos os campos!";
                 return Redirect("/Products/ProductDetails/" + eventId);
             }
-
         }
+        #endregion
 
     }
 }

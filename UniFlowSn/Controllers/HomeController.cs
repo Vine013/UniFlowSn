@@ -23,20 +23,17 @@ namespace UniFlowSn.Controllers
             var banners = _context.Banners.Where(b => b.Position == "Slider").OrderBy(x => x.Priority).ToList();
             ViewData["banners"] = banners;
 
-            var eventosPorTipo = _context.Events
-                .Include(e => e.Type)
+            var eventTypes = _context.EventTypes.OrderBy(t => t.Type).ToList();
+            ViewBag.EventTypes = eventTypes;
+
+            var upcomingEventsHome = _context.Events
                 .Include(e => e.Place)
-                .OrderBy(e => e.DtStart)
-                .GroupBy(e => e.TypeId)
-                .Select(g => new
-                {
-                    TypeId = g.Key,
-                    TypeName = g.First().Type == null ? null : g.First().Type.Type,
-                    Events = g.ToList()
-                })
+                .Where(e => e.DtStart > DateTime.Now) // Filtra eventos futuros
+                .OrderBy(e => e.DtStart) // Ordena pelo DtStart mais próximo
+                .Take(9) // Pega os 9 eventos mais próximos
                 .ToList();
 
-            ViewBag.EventosPorTipo = eventosPorTipo;
+            ViewBag.LatestEvents = upcomingEventsHome;
 
             return View();
         }
