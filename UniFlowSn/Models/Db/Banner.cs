@@ -15,7 +15,7 @@ public partial class Banner
     public string? SubTitle { get; set; }
 
     [Display(Name = "Imagem")]
-    public string ImageName { get; set; } = null!;
+    public string? ImageName { get; set; }
 
     [Display(Name = "Prioridade")]
     public short? Priority { get; set; }

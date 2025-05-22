@@ -31,10 +31,10 @@
                         <td>@Html.DisplayFor(modelItem => item.CommentText)</td>
                         <td>@item.CreateDate.ToString("dd/MM/yyyy HH:mm:ss")</td>
                         <td>@Html.DisplayFor(modelItem => item.Event.Title)</td>
-                        <td class="text-center">
-                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary"><i class="bi bi-pencil-fill"></i> Editar</a>
-                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info ms-1"><i class="bi bi-eye-fill"></i> Detalhes</a>
-                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger ms-1"><i class="bi bi-trash-fill"></i> Excluir</a>
+                        <td class="text-center d-flex gap-2">
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary my-2"><i class="bi bi-pencil-fill"></i> Editar</a>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info my-2"><i class="bi bi-eye-fill"></i> Detalhes</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger my-2"><i class="bi bi-trash-fill"></i> Excluir</a>
                         </td>
                     </tr>
                 }

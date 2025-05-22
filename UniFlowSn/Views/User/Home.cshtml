@@ -14,8 +14,8 @@
                 </div>
                 <div class="card-body p-4">
                     <div class="text-center mb-4">
-                        <i class="bi bi-person-circle fs-1 rounded-circle border border-primary p-3 text-primary"></i>
-                        <h5 class="mt-3">Olá, @Model.FirstName @Model.LastName!</h5>
+                        <i class="bi bi-person-circle h2 rounded-circle p-3 text-uniflow" style="color:#0FC2C0 !important;"></i>
+                        <h2 class="mt-3 h2">Olá, @Model.FirstName @Model.LastName!</h2>
                     </div>
                     <h4 class="card-title mb-4">Informações Pessoais</h4>
                     <dl class="row">
@@ -32,7 +32,7 @@
                         <dd class="col-sm-8">@Model.RegisterDate?.ToString("dd/MM/yyyy HH:mm:ss")</dd>
                     </dl>
                     <div class="mt-4 d-grid">
-                        <a href="#" class="btn btn-outline-primary btn-lg"><i class="bi bi-pencil-fill me-2"></i> Editar Informações</a>
+                        <a href="~/User/MyEvents" class="btn btn-outline-primary btn-lg"><i class="bi bi-calendar-event me-2"></i> Meus Eventos</a>
                     </div>
                 </div>
             </div>

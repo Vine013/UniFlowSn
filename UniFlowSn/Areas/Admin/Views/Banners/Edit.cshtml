@@ -45,7 +45,7 @@
                             <span asp-validation-for="Priority" class="text-danger"></span>
                         </div>
                         <div class="mb-3 form-floating">
-                            <input asp-for="Link" class="form-control" placeholder="Link" type="url" />
+                            <input asp-for="Link" class="form-control" placeholder="Link" />
                             <label asp-for="Link" class="form-label"><i class="bi bi-link-45deg me-2"></i> Link</label>
                             <span asp-validation-for="Link" class="text-danger"></span>
                         </div>
@@ -53,8 +53,6 @@
                             <select asp-for="Position" class="form-select" required>
                                 <option value="">Selecione a Posição</option>
                                 <option value="Slider">Slider</option>
-                                <option value="Banner 1">Banner 1</option>
-                                <option value="Banner 2">Banner 2</option>
                             </select>
                             <label asp-for="Position" class="form-label"><i class="bi bi-layout-fill me-2"></i> Posição</label>
                             <span asp-validation-for="Position" class="text-danger"></span>

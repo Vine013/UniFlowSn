@@ -107,7 +107,7 @@ namespace UniFlowSn.Controllers
                 if (!match.Success)
                 {
                     TempData["ErrorMessage"] = "Email inválido";
-                    return Redirect("/Products/ProductDetails/" + eventId);
+                    return Redirect("/Events/EventDetails/" + eventId);
                 }
 
                 Comment newComment = new Comment();
@@ -121,12 +121,12 @@ namespace UniFlowSn.Controllers
                 _context.SaveChanges();
 
                 TempData["SuccessMessage"] = "Seu comentário foi enviado com sucesso!";
-                return Redirect("/Products/ProductDetails/" + eventId);
+                return Redirect("/Events/EventDetails/" + eventId);
             }
             else
             {
                 TempData["ErrorMessage"] = "Por favor, preencha todos os campos!";
-                return Redirect("/Products/ProductDetails/" + eventId);
+                return Redirect("/Events/EventDetails/" + eventId);
             }
         }
         #endregion

@@ -56,7 +56,7 @@ namespace UniFlowSn.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Type")] EventType eventType)
+        public async Task<IActionResult> Create([Bind("Id,Type,Icon")] EventType eventType)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace UniFlowSn.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Type")] EventType eventType)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Type,Icon")] EventType eventType)
         {
             if (id != eventType.Id)
             {
